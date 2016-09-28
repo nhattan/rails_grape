@@ -4,3 +4,12 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+Bundler.setup
+require 'grape-raketasks'
+require 'grape-raketasks/tasks'
+
+desc 'load the Sinatra environment.'
+task :environment do
+  require File.expand_path('config/application.rb', File.dirname(__FILE__))
+end
