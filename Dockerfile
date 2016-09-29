@@ -2,6 +2,9 @@ FROM ruby:2.3.0
 
 RUN apt-get update -qq && apt-get install -y build-essential
 
+# for postgres
+RUN apt-get install -y libpq-dev
+
 # for nokogiri
 RUN apt-get install -y libxml2-dev libxslt1-dev
 

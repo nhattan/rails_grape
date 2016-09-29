@@ -1,7 +1,22 @@
-web:
+db:
+  image: postgres:9.5.4
+  ports:
+    - "5433:5432"
+
+app:
   build: .
   command: bin/rails server --port 3000 --binding 0.0.0.0
   ports:
     - "3000:3000"
+  links:
+    - db
   volumes:
     - .:/rails_grape
+  environment:
+    RAILS_ENV: production
+    SECRET_KEY_BASE: secret
+    DB_NAME: rails_grape_production
+    DB_HOST: 192.168.99.100
+    DB_PORT: 5433
+    DB_USERNAME: postgres
+    DB_PASSWORD:
